@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>      
+
+  <constant name="struts.devMode" value="false"/>
+
+	
+   <package name="PYSGSWEB"  extends="struts-default,json-default,tiles-default">
+
+
+		
+		<interceptors>
+		<interceptor name="sessionInterceptor" class="com.pacifico.sgs.interceptores.SessionInterceptor"></interceptor>
+			<interceptor-stack name="sessionStack">
+				<interceptor-ref name="sessionInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		
+	<global-results>
+            <result name="NOLOGUEADO" >/frmLogin.jsp</result>
+  	</global-results>	
+		
+
+	<action name="a_procesocarga" >
+   	<interceptor-ref name="sessionStack" />
+   	<result type="tiles" name="success" >TIproceso</result>
+
+	</action>
+	
+	<action name="a_excel" class="com.pacifico.sgs.action.TramaAction" method="Cierra_Session">
+   	<interceptor-ref name="sessionStack" />
+   	<result type="tiles" name="success" >TAexcel</result>
+	</action>
+	
+	<action name="a_inclusion" class="com.pacifico.sgs.action.listadoAction" method="listaEmiMovimientoEPS"  >
+   	<result type="tiles" name="success" >TAfiliado</result>
+	</action>
+	
+	
+	<action name="a_consulta" >
+   	<interceptor-ref name="sessionStack" />
+   	<result type="tiles" name="success" >TAconsulta</result>
+	</action>
+	
+	<action name="a_consulta2" >
+   <interceptor-ref name="sessionStack" />
+   	<result type="tiles" name="success" >TAconsulta2</result>
+	</action>
+	
+	<action name="a_manteje" >
+   <interceptor-ref name="sessionStack" />
+   	<result type="tiles" name="success" >TAmanejecutivos</result>
+	</action>
+	
+	<action name="a_reporteindicadores" >
+   <interceptor-ref name="sessionStack" />
+   	<result type="tiles" name="success" >TAreporteindicadores</result>
+	</action>
+	
+	
+	
+	<action name="a_cargarexcel"  class="com.pacifico.sgs.action.TramaAction"   method="loadExcel" >
+	<interceptor-ref name="sessionStack" />
+	<result  name="INCLUSION"></result>
+	<result  name="EXCLUSION"></result>
+ 	<result  name="success"></result>
+ 	<result type="json" name="error" >/frmErrorCarga.jsp</result>	
+	</action>
+	
+	<action name="grabarAfiliado" class="com.pacifico.sgs.action.TramaAction"  method="Grabar_Excel">
+			<interceptor-ref name="sessionStack" />
+			<result name="success">/frmTramaProcesada.jsp</result>
+			<result type="json" name="error"></result>			
+	</action>
+			
+		
+	<action name="a_respuesta" class="com.pacifico.sgs.action.TramaAction"  method="excel_respuesta">
+			<result type="json" name="success"></result>
+			<result type="json" name="error"></result>			
+	</action>
+	
+	
+	
+	
+	
+	
+	</package>
+
+		
+</struts>

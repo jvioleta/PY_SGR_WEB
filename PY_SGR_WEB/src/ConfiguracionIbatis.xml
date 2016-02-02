@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<!-- LLAMADO DE LAS ENTIDADES 
+		<typeAlias alias="movimientoAlias"  	type="com.pacifico.sgs.bean.Movimiento" /> -->
+
+		
+		
+	</typeAliases> 
+	
+	<environments default="development">
+	<environment id="development">
+			<transactionManager type="JDBC" />		
+			<dataSource type="UNPOOLED">
+						<property name="driver" 	value="net.sourceforge.jtds.jdbc.Driver" />
+						<property name="url" 		value="jdbc:jtds:sqlserver://PCOESAC9890/DBPRODSGS" />
+						<property name="username" 	value="jose" />
+						<property name="password" 	value="josejavg" />
+						<property name="defaultTransactionIsolationLevel" value="2"/>
+			 </dataSource>
+	</environment>
+	</environments>
+	
+	<!--  Registro de los mappers  -->
+	
+	<mappers>					
+	<!--	<mapper resource="com/pacifico/sgs/xml/movimientoXML.xml" />-->
+
+	</mappers>
+	
+</configuration>
+
